@@ -1,15 +1,14 @@
 var express = require('express'),
     app = express(),
     port = 3000
-var mongo = require('mongodb')
+
+var todoRoutes = require('./routes/todos');
 
 app.get('/', function(req, res) {
-    res.json({message: "JS Object"});
+    res.json('Root Route Reached');
 });
 
-app.get('/happy', function(req, res) {
-    res.send(":)");
-});
+app.use('/api/todos', todoRoutes);
 
 app.listen(port, function(){
     console.log("App is running on Port " + port);
